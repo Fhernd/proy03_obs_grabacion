@@ -1,5 +1,8 @@
 import sys
 import time
+import tkinter as tk
+from tkinter import simpledialog
+
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
