@@ -12,7 +12,23 @@ class GestorGrabacionObs(FileSystemEventHandler):
         if event.is_directory:
             return
         
-        print(f'Archivo modificado: {event.src_path}')
+        nombre_inicial = event.src_path
+        
+        print(f'Archivo modificado: {nombre_inicial}')
+        
+        root = tk.Tk()
+        root.withdraw()
+        
+        nombre_archivo = nombre_inicial.split('/')[-1]
+        
+        nuevo_nombre = simpledialog.askstring("Input", "Introduce el nuevo nombre del archivo:", initialvalue=nombre_inicial)
+        
+        root.destroy()
+        
+        if nuevo_nombre:
+            print(f'El usuario ha ingresado el nombre: {nuevo_nombre}')
+            
+            
 
 
 if __name__ == "__main__":
