@@ -1,6 +1,7 @@
 import sys
 import time
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import simpledialog
 
 from watchdog.observers import Observer
@@ -38,11 +39,11 @@ class GestorGrabacionObs(FileSystemEventHandler):
                         
                         break
                     else:
-                        simpledialog.messagebox.showwarn('Advertencia', f'No se pudo renombrar el archivo: {nuevo_nombre}')
+                        messagebox.showwarning('Advertencia', f'No se pudo renombrar el archivo: {nuevo_nombre}')
                 else:
-                    simpledialog.messagebox.showwarn('Advertencia', f'Nombre de archivo inválido: {nuevo_nombre}')
+                    messagebox.showwarning('Advertencia', f'Nombre de archivo inválido: {nuevo_nombre}')
             else:
-                simpledialog.messagebox.showwarn('Advertencia', f'Nombre de archivo inválido: {nuevo_nombre}')
+                messagebox.showwarning('Advertencia', f'Nombre de archivo inválido: {nuevo_nombre}')
                     
         root.destroy()
 
