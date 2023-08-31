@@ -1,3 +1,4 @@
+import os
 import re
 
 
@@ -30,3 +31,25 @@ def es_nombre_valido(nombre_archivo):
         return False
 
     return True
+
+
+def renombrar_archivo(ruta_actual, nuevo_nombre):
+    """
+    Renombra un archivo.
+    
+    Args:
+        ruta_completa (str): Ruta completa del archivo a renombrar.
+        nuevo_nombre (str): Nuevo nombre del archivo.
+    
+    Returns:
+        bool: True si el archivo se renombró correctamente, False en caso contrario.
+    """
+    try:
+        directorio, _ = os.path.split(ruta_actual)
+        nueva_ruta = os.path.join(directorio, nuevo_nombre)
+
+        os.rename(ruta_actual, nueva_ruta)
+        
+        return True
+    except:
+        return False

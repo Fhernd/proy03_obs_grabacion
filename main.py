@@ -6,6 +6,8 @@ from tkinter import simpledialog
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+from util import es_nombre_valido
+
 
 class GestorGrabacionObs(FileSystemEventHandler):
     def on_modified(self, event):
@@ -26,7 +28,9 @@ class GestorGrabacionObs(FileSystemEventHandler):
         root.destroy()
         
         if nuevo_nombre and len(nuevo_nombre):
-            print(f'El usuario ha ingresado el nombre: {nuevo_nombre}')
+            
+            if es_nombre_valido(nuevo_nombre):
+                pass
             
 
 
