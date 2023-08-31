@@ -33,15 +33,16 @@ class GestorGrabacionObs(FileSystemEventHandler):
                 
                 if es_nombre_valido(nuevo_nombre):
                     if renombrar_archivo(event.src_path, nuevo_nombre):
-                        print(f'Archivo renombrado: {nuevo_nombre}')
+                        # Mostrar mensaje de diálogo:
+                        simpledialog.messagebox.showinfo('Información', f'Archivo renombrado correctamente: {nuevo_nombre}')
                         
                         break
                     else:
-                        print(f'Error al renombrar el archivo: {nuevo_nombre}')
+                        simpledialog.messagebox.showwarn('Advertencia', f'No se pudo renombrar el archivo: {nuevo_nombre}')
                 else:
-                    print(f'Nombre de archivo inválido: {nuevo_nombre}')
+                    simpledialog.messagebox.showwarn('Advertencia', f'Nombre de archivo inválido: {nuevo_nombre}')
             else:
-                print('Nombre de archivo vacío')
+                simpledialog.messagebox.showwarn('Advertencia', f'Nombre de archivo inválido: {nuevo_nombre}')
                     
         root.destroy()
 
