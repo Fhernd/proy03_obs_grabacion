@@ -23,20 +23,27 @@ class GestorGrabacionObs(FileSystemEventHandler):
         
         nombre_archivo = nombre_inicial.split('/')[-1]
         
-        nuevo_nombre = simpledialog.askstring("Input", "Introduce el nuevo nombre del archivo:", initialvalue=nombre_archivo)
-        
-        root.destroy()
-        
-        if nuevo_nombre and len(nuevo_nombre):
+        while True:
+            nuevo_nombre = simpledialog.askstring("Input", "Introduce el nuevo nombre del archivo:", initialvalue=nombre_archivo)
             
-            if es_nombre_valido(nuevo_nombre):
-                if renombrar_archivo(event.src_path, nuevo_nombre):
-                    print(f'Archivo renombrado: {nuevo_nombre}')
+            if nuevo_nombre is None:
+                break
+            
+            if len(nuevo_nombre):
+                
+                if es_nombre_valido(nuevo_nombre):
+                    if renombrar_archivo(event.src_path, nuevo_nombre):
+                        print(f'Archivo renombrado: {nuevo_nombre}')
+                        
+                        break
+                    else:
+                        print(f'Error al renombrar el archivo: {nuevo_nombre}')
                 else:
-                    print(f'Error al renombrar el archivo: {nuevo_nombre}')
+                    print(f'Nombre de archivo inválido: {nuevo_nombre}')
             else:
-                print(f'Nombre de archivo inválido: {nuevo_nombre}')
-
+                print('Nombre de archivo vacío')
+                    
+        root.destroy()
 
 if __name__ == "__main__":
     path = sys.argv[1] if len(sys.argv) > 1 else '.'
