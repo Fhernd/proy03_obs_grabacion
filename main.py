@@ -6,7 +6,7 @@ from tkinter import simpledialog
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from util import es_nombre_valido
+from util import es_nombre_valido, renombrar_archivo
 
 
 class GestorGrabacionObs(FileSystemEventHandler):
@@ -23,15 +23,19 @@ class GestorGrabacionObs(FileSystemEventHandler):
         
         nombre_archivo = nombre_inicial.split('/')[-1]
         
-        nuevo_nombre = simpledialog.askstring("Input", "Introduce el nuevo nombre del archivo:", initialvalue=nombre_inicial)
+        nuevo_nombre = simpledialog.askstring("Input", "Introduce el nuevo nombre del archivo:", initialvalue=nombre_archivo)
         
         root.destroy()
         
         if nuevo_nombre and len(nuevo_nombre):
             
             if es_nombre_valido(nuevo_nombre):
-                pass
-            
+                if renombrar_archivo(event.src_path, nuevo_nombre):
+                    print(f'Archivo renombrado: {nuevo_nombre}')
+                else:
+                    print(f'Error al renombrar el archivo: {nuevo_nombre}')
+            else:
+                print(f'Nombre de archivo inválido: {nuevo_nombre}')
 
 
 if __name__ == "__main__":
