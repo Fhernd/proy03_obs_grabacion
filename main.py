@@ -12,7 +12,16 @@ from util import es_nombre_valido, renombrar_archivo
 
 
 class GestorGrabacionObs(FileSystemEventHandler):
+    """
+    Clase que gestiona los eventos de renombrado de archivos.
+    """
     def on_modified(self, event):
+        """
+        Método que se ejecuta cuando se modifica un archivo.
+        
+        Args:
+            event (FileSystemEvent): Evento de modificación de archivo.
+        """
         if event.is_directory:
             return
         
