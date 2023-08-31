@@ -25,9 +25,8 @@ class GestorGrabacionObs(FileSystemEventHandler):
         
         root.destroy()
         
-        if nuevo_nombre:
+        if nuevo_nombre and len(nuevo_nombre):
             print(f'El usuario ha ingresado el nombre: {nuevo_nombre}')
-            
             
 
 
