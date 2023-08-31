@@ -1,3 +1,4 @@
+import os
 import sys
 import time
 import tkinter as tk
@@ -22,7 +23,7 @@ class GestorGrabacionObs(FileSystemEventHandler):
         root = tk.Tk()
         root.withdraw()
         
-        nombre_archivo = nombre_inicial.split('/')[-1]
+        nombre_archivo = os.path.basename(nombre_inicial)
         
         while True:
             nuevo_nombre = simpledialog.askstring("Input", "Introduce el nuevo nombre del archivo:", initialvalue=nombre_archivo)
@@ -34,7 +35,6 @@ class GestorGrabacionObs(FileSystemEventHandler):
                 
                 if es_nombre_valido(nuevo_nombre):
                     if renombrar_archivo(event.src_path, nuevo_nombre):
-                        # Mostrar mensaje de diálogo:
                         simpledialog.messagebox.showinfo('Información', f'Archivo renombrado correctamente: {nuevo_nombre}')
                         
                         break
